@@ -16,6 +16,7 @@ declare var bootstrap: any;
 export class DepartmentsComponent implements OnInit {
     departments: Department[] = [];
     form: FormGroup;
+    isSaving = false;
     isEditMode = false;
     currentId: number | null = null;
     deleteId: number | null = null;
@@ -66,19 +67,32 @@ export class DepartmentsComponent implements OnInit {
     save() {
         if (this.form.invalid) return;
 
+        this.isSaving = true;
         const name = this.form.value.name;
 
         if (this.isEditMode && this.currentId) {
-            this.deptService.update(this.currentId, name).subscribe(() => {
-                this.toastr.success('Department updated');
-                this.modal.hide();
-                this.loadData();
+            this.deptService.update(this.currentId, name).subscribe({
+                next: () => {
+                    this.toastr.success('Department updated');
+                    this.modal.hide();
+                    this.loadData();
+                    this.isSaving = false;
+                },
+                error: (err) => {
+                    this.isSaving = false;
+                }
             });
         } else {
-            this.deptService.add(name).subscribe(() => {
-                this.toastr.success('Department added');
-                this.modal.hide();
-                this.loadData();
+            this.deptService.add(name).subscribe({
+                next: () => {
+                    this.toastr.success('Department added');
+                    this.modal.hide();
+                    this.loadData();
+                    this.isSaving = false;
+                },
+                error: (err) => {
+                    this.isSaving = false;
+                }
             });
         }
     }

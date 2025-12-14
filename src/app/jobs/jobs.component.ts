@@ -16,6 +16,7 @@ declare var bootstrap: any;
 export class JobsComponent implements OnInit {
     jobs: Job[] = [];
     form: FormGroup;
+    isSaving = false;
     isEditMode = false;
     currentId: number | null = null;
     deleteId: number | null = null;
@@ -66,19 +67,32 @@ export class JobsComponent implements OnInit {
     save() {
         if (this.form.invalid) return;
 
+        this.isSaving = true;
         const title = this.form.value.title;
 
         if (this.isEditMode && this.currentId) {
-            this.jobService.update(this.currentId, title).subscribe(() => {
-                this.toastr.success('Job updated');
-                this.modal.hide();
-                this.loadData();
+            this.jobService.update(this.currentId, title).subscribe({
+                next: () => {
+                    this.toastr.success('Job updated');
+                    this.modal.hide();
+                    this.loadData();
+                    this.isSaving = false;
+                },
+                error: (err) => {
+                    this.isSaving = false;
+                }
             });
         } else {
-            this.jobService.add(title).subscribe(() => {
-                this.toastr.success('Job added');
-                this.modal.hide();
-                this.loadData();
+            this.jobService.add(title).subscribe({
+                next: () => {
+                    this.toastr.success('Job added');
+                    this.modal.hide();
+                    this.loadData();
+                    this.isSaving = false;
+                },
+                error: (err) => {
+                    this.isSaving = false;
+                }
             });
         }
     }

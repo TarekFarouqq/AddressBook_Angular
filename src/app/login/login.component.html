@@ -35,8 +35,11 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100 btn-lg mb-3" [disabled]="loginForm.invalid">
-                <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
+            <button type="submit" class="btn btn-primary w-100 btn-lg mb-3" [disabled]="loginForm.invalid || isLoading">
+                <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status"
+                    aria-hidden="true"></span>
+                <span *ngIf="!isLoading"><i class="bi bi-box-arrow-in-right me-2"></i>Sign In</span>
+                <span *ngIf="isLoading">Signing In...</span>
             </button>
 
             <div class="text-center">

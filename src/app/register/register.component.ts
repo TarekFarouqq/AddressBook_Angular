@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class RegisterComponent {
     registerForm: FormGroup;
+    isLoading = false;
 
     constructor(
         private fb: FormBuilder,
@@ -39,14 +40,17 @@ export class RegisterComponent {
 
     onSubmit() {
         if (this.registerForm.valid) {
+            this.isLoading = true;
             const payload = this.registerForm.value;
             this.authService.register(payload).subscribe({
                 next: (res) => {
                     this.toastr.success('Registration successful. Please login.');
                     this.router.navigate(['/login']);
+                    this.isLoading = false;
                 },
                 error: (err) => {
                     this.toastr.error('Registration failed: ' + (err.error?.message || err.message));
+                    this.isLoading = false;
                 }
             });
         } else {

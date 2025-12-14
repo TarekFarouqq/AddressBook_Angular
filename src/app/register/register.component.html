@@ -92,8 +92,12 @@
                 }
             </div>
 
-            <button type="submit" class="btn btn-primary w-100 btn-lg mb-3" [disabled]="registerForm.invalid">
-                <i class="bi bi-person-check me-2"></i>Create Account
+            <button type="submit" class="btn btn-primary w-100 btn-lg mb-3"
+                [disabled]="registerForm.invalid || isLoading">
+                <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status"
+                    aria-hidden="true"></span>
+                <span *ngIf="!isLoading"><i class="bi bi-person-check me-2"></i>Create Account</span>
+                <span *ngIf="isLoading">Creating Account...</span>
             </button>
 
             <div class="text-center">

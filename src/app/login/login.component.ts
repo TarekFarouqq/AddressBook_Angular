@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class LoginComponent {
     loginForm: FormGroup;
+    isLoading = false;
 
     constructor(
         private fb: FormBuilder,
@@ -29,6 +30,7 @@ export class LoginComponent {
 
     onSubmit() {
         if (this.loginForm.valid) {
+            this.isLoading = true;
             this.authService.login(this.loginForm.value).subscribe({
                 next: (res: any) => {
                     if (res && res.token) {
@@ -44,10 +46,12 @@ export class LoginComponent {
                         }
                     } else {
                         this.toastr.error('Login failed: No token received');
+                        this.isLoading = false;
                     }
                 },
                 error: (err) => {
                     this.toastr.error('Login failed: ' + (err.error?.message || err.message));
+                    this.isLoading = false;
                 }
             });
         } else {

@@ -25,6 +25,7 @@ export class AddressBookComponent implements OnInit {
   jobs: Job[] = [];
   departments: Department[] = [];
   loading = false;
+  isSaving = false;
   deleteId: number | null = null;
   searchCollapsed = true;
 
@@ -213,6 +214,8 @@ export class AddressBookComponent implements OnInit {
       return;
     }
 
+    this.isSaving = true;
+
     if (this.isEditMode && this.currentEntryId) {
       const model: AddressBook = {
         ...this.entryForm.value,
@@ -224,8 +227,12 @@ export class AddressBookComponent implements OnInit {
           this.toastr.success('Entry updated successfully');
           this.entryModalInstance.hide();
           this.loadData();
+          this.isSaving = false;
         },
-        error: err => this.toastr.error('Update failed: ' + (err.error?.message || err.message))
+        error: err => {
+          this.toastr.error('Update failed: ' + (err.error?.message || err.message));
+          this.isSaving = false;
+        }
       });
     } else {
       const formData = new FormData();
@@ -245,8 +252,12 @@ export class AddressBookComponent implements OnInit {
           this.toastr.success('Entry added successfully');
           this.entryModalInstance.hide();
           this.loadData();
+          this.isSaving = false;
         },
-        error: err => this.toastr.error('Add failed: ' + (err.error?.message || err.message))
+        error: err => {
+          this.toastr.error('Add failed: ' + (err.error?.message || err.message));
+          this.isSaving = false;
+        }
       });
     }
   }

@@ -268,8 +268,13 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" (click)="saveEntry()" [disabled]="entryForm.invalid">Save
-                    changes</button>
+                <button type="button" class="btn btn-primary" (click)="saveEntry()"
+                    [disabled]="entryForm.invalid || isSaving">
+                    <span *ngIf="isSaving" class="spinner-border spinner-border-sm me-2" role="status"
+                        aria-hidden="true"></span>
+                    <span *ngIf="!isSaving">Save changes</span>
+                    <span *ngIf="isSaving">Saving...</span>
+                </button>
             </div>
         </div>
     </div>
