@@ -104,10 +104,20 @@ export class JobsComponent implements OnInit {
 
     doDelete() {
         if (this.deleteId) {
-            this.jobService.delete(this.deleteId).subscribe(() => {
-                this.toastr.success('Job deleted');
-                this.deleteModal.hide();
-                this.loadData();
+            this.jobService.delete(this.deleteId).subscribe({
+                next: () => {
+                    this.toastr.success('Job deleted');
+                    this.deleteModal.hide();
+                    this.loadData();
+                },
+                error: (err) => {
+                    if (err.status === 409) {
+                        this.toastr.error(err.error.message);
+                    } else {
+                        this.toastr.error('Failed to delete job');
+                    }
+                    this.deleteModal.hide();
+                }
             });
         }
     }

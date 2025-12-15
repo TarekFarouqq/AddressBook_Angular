@@ -104,10 +104,20 @@ export class DepartmentsComponent implements OnInit {
 
     doDelete() {
         if (this.deleteId) {
-            this.deptService.delete(this.deleteId).subscribe(() => {
-                this.toastr.success('Department deleted');
-                this.deleteModal.hide();
-                this.loadData();
+            this.deptService.delete(this.deleteId).subscribe({
+                next: () => {
+                    this.toastr.success('Department deleted');
+                    this.deleteModal.hide();
+                    this.loadData();
+                },
+                error: (err) => {
+                    if (err.status === 409) {
+                        this.toastr.error(err.error.message);
+                    } else {
+                        this.toastr.error('Failed to delete department');
+                    }
+                    this.deleteModal.hide();
+                }
             });
         }
     }
