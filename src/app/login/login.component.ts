@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from '../Services/auth.service';
+import { AuthService } from '../core/services/auth.service';
 import { jwtDecode } from 'jwt-decode';
 import { CommonModule } from '@angular/common';
 

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AddressBookService } from '../Services/address-book.service';
-import { JobService } from '../Services/job.service';
-import { DepartmentService } from '../Services/department.service';
-import { AddressBook } from '../Models/address-book';
-import { Department } from '../Models/department';
-import { Job } from '../Models/job';
+import { AddressBookService } from '../core/services/address-book.service';
+import { JobService } from '../core/services/job.service';
+import { DepartmentService } from '../core/services/department.service';
+import { AddressBook } from '../core/models/address-book';
+import { Department } from '../core/models/department';
+import { Job } from '../core/models/job';
 import { saveAs } from 'file-saver';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../enviroments/enviroment';

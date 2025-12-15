@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { DepartmentService } from '../Services/department.service';
-import { Department } from '../Models/department';
+import { DepartmentService } from '../core/services/department.service';
+import { Department } from '../core/models/department';
 import { ToastrService } from 'ngx-toastr';
 
 declare var bootstrap: any;

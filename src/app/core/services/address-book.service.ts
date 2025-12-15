@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../enviroments/enviroment';
-import { AddressBook, PaginatedResponse } from '../Models/address-book';
+import { environment } from '../../../enviroments/enviroment';
+import { AddressBook, PaginatedResponse } from '../models/address-book';
 
 @Injectable({
     providedIn: 'root'

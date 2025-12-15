@@ -1,4 +1,3 @@
-/* Modern Design System - RED THEME */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
@@ -25,7 +24,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Modern Card Styling */
+
 .card {
     border: none;
     border-radius: var(--border-radius);
@@ -40,7 +39,7 @@ body {
     box-shadow: var(--card-hover-shadow);
 }
 
-/* Modern Buttons */
+
 .btn {
     border-radius: 8px;
     padding: 0.6rem 1.5rem;
@@ -96,7 +95,7 @@ body {
     box-shadow: 0 8px 20px rgba(238, 90, 111, 0.4);
 }
 
-/* Modern Form Controls */
+
 .form-control,
 .form-select {
     border-radius: 8px;
@@ -113,7 +112,7 @@ body {
     outline: none;
 }
 
-/* Modern Table */
+
 .table {
     border-radius: var(--border-radius);
     overflow: hidden;
@@ -148,7 +147,7 @@ body {
     vertical-align: middle;
 }
 
-/* Modern Modal */
+
 .modal-content {
     border: none;
     border-radius: var(--border-radius);
@@ -177,7 +176,7 @@ body {
     background: #f8fafc;
 }
 
-/* Animations */
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -194,7 +193,7 @@ body {
     animation: fadeInUp 0.6s ease-out;
 }
 
-/* Scrollbar Styling */
+
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -213,14 +212,14 @@ body {
     background: linear-gradient(135deg, #e73827 0%, #f85032 100%);
 }
 
-/* Badge Styling */
+
 .badge {
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-weight: 500;
 }
 
-/* Input Group Modern */
+
 .input-group-text {
     background: var(--primary-gradient);
     color: white;
@@ -228,7 +227,7 @@ body {
     font-weight: 500;
 }
 
-/* Spinner */
+
 .spinner-border {
     border-color: #f85032;
     border-right-color: transparent;
